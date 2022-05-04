@@ -1,8 +1,13 @@
 #!/bin/bash
-Packages=$(yq ".packages[]" data/init.yaml)
-apt install -y $Packages
 
-cp data/preseed.yaml /etc/lxd/preseed.yaml
+echo "Where am I? " $( dirname "$(readlink -f "${BASH_SOURCE}")" )
+
+DATADIR=/run/multimico/bootstrap/data
+
+PACKAGES=$(yq ".packages[]" ${DATADIR}/init.yaml)
+apt install -y $PACKAGES
+
+cp ${DATADIR}/preseed.yaml /etc/lxd/preseed.yaml
 
 ovs-vsctl add-br ovs0
 ovs-vsctl add-port ovs0 mgnt0 -- set interface mgnt0 type=internal

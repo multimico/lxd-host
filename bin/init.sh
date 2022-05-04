@@ -1,8 +1,7 @@
 #!/bin/bash
 
-echo "Where am I? " $( dirname "$(readlink -f "${BASH_SOURCE}")" )
-
-DATADIR=/run/multimico/bootstrap/data
+BINDIR=$( dirname "$(readlink -f "${BASH_SOURCE}")" )
+DATADIR=$( dirname ${$BINDIR})/data
 
 PACKAGES=$(yq ".packages[]" ${DATADIR}/init.yaml)
 apt install -y $PACKAGES

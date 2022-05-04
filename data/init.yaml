@@ -1,0 +1,7 @@
+packages:
+- petname
+- openvswitch-switch-dpdk
+- libosinfo-bin
+
+files:
+- data/preseed.yaml: /etc/lxd/preseed.yaml

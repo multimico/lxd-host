@@ -1,0 +1,23 @@
+config: {}
+cluster: null
+networks: []
+storage_pools:
+- config: 
+    source: /var/snap/lxd/common/lxd/storage-pools/default
+  description: ""
+  name: default
+  driver: btrfs
+profiles:
+- name: default
+  config: {}
+  description: ""
+  devices:
+    eth0:
+      nictype: bridged
+      name: eth0
+      parent: ovs0
+      type: nic
+    root:
+      path: /
+      pool: default
+      type: disk

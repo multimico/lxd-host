@@ -2,6 +2,7 @@
 
 BINDIR=$( dirname "$(readlink -f "${BASH_SOURCE}")" )
 DATADIR=$( dirname ${$BINDIR})/data
+MACADDRESS=$1
 
 PACKAGES=$(yq ".packages[]" ${DATADIR}/init.yaml)
 apt install -y $PACKAGES
@@ -11,7 +12,7 @@ cp ${DATADIR}/preseed.yaml /etc/lxd/preseed.yaml
 ovs-vsctl add-br ovs0
 ovs-vsctl add-port ovs0 mgnt0 -- set interface mgnt0 type=internal
 # fix netplan
-sed -i -e "s/dhcp4: true/dhcp4: no/"  -e "/^  version: 2/i \\ \\ \\ \\ mgnt0:\\n\\ \\ \\ \\ \\ \\ dhcp4: true" /etc/netplan/00-installer-config.yaml
+sed -i -e "s/dhcp4: true/dhcp4: no/"  -e "/^  version: 2/i \\ \\ \\ \\ mgnt0:\\n\\ \\ \\ \\ \\ \\ dhcp4: true\\n\\ \\ \\ \\ \\ \\ macaddress: $MACADDRESS" /etc/netplan/00-installer-config.yaml
 netplan apply
 # activate phys hardware
 ovs-vsctl add-port ovs0 eno1

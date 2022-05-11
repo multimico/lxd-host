@@ -40,8 +40,3 @@ cp ${DATADIR}/preseed.yaml /etc/lxd/preseed.yaml
 cat /etc/lxd/preseed.yaml | lxd init --preseed
 
 echo "Succeeded"
-
-if [ -f -f /var/run/reboot-required ]
-then
-    reboot
-fi

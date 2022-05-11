@@ -13,6 +13,8 @@ apt install -y $PACKAGES
 
 sed -i -e "/^GRUB_TIMEOUT=/a GRUB_RECORDFAIL_TIMEOUT=1" /etc/default/grub
 
+upgrade-grub
+
 ### 
 # OVS and Network setup 
 
@@ -38,3 +40,8 @@ cp ${DATADIR}/preseed.yaml /etc/lxd/preseed.yaml
 cat /etc/lxd/preseed.yaml | lxd init --preseed
 
 echo "Succeeded"
+
+if [ -f -f /var/run/reboot-required ]
+then
+    reboot
+fi

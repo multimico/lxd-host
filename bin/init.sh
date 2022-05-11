@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BINDIR=$( dirname "$(readlink -f "${BASH_SOURCE}")" )
-DATADIR=$( dirname ${$BINDIR})/data
+DATADIR="$( dirname ${BINDIR} )/data"
 MACADDRESS=$1
 
 PACKAGES=$(yq ".packages[]" ${DATADIR}/init.yaml)

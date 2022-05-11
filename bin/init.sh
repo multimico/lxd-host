@@ -8,6 +8,12 @@ PACKAGES=$(yq ".packages[]" ${DATADIR}/init.yaml)
 apt install -y $PACKAGES
 
 ### 
+# Speedup Grub
+# Fix the timeout for modern EFI Systems
+
+sed -i -e "/^GRUB_TIMEOUT=/a GRUB_RECORDFAIL_TIMEOUT=1" /etc/default/grub
+
+### 
 # OVS and Network setup 
 
 # add bridging switch ovs0 

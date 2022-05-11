@@ -13,7 +13,7 @@ apt install -y $PACKAGES
 
 sed -i -e "/^GRUB_TIMEOUT=/a GRUB_RECORDFAIL_TIMEOUT=1" /etc/default/grub
 
-upgrade-grub
+update-grub
 
 ### 
 # OVS and Network setup 

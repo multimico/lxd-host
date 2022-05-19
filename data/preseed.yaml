@@ -7,6 +7,16 @@ storage_pools:
   description: ""
   name: default
   driver: btrfs
+- config: 
+    source: /var/snap/lxd/common/lxd/storage-pools/docker
+  description: docker-storage
+  name: docker
+  driver: btrfs
+- config: 
+    source: /var/snap/lxd/common/lxd/storage-pools/kubernetes
+  description: kubernetes-storage
+  name: kubernetes
+  driver: btrfs
 profiles:
 - name: default
   config: {}
@@ -20,4 +30,36 @@ profiles:
     root:
       path: /
       pool: default
+      type: disk
+- name: docker
+  config: 
+    security:
+      nesting: true 
+      syscalls:
+        intercept: 
+          mknod: true 
+          setxattr: true
+  description: ""
+  devices:
+    eth0:
+      nictype: bridged
+      name: eth0
+      parent: ovs0
+      type: nic
+    root:
+      path: /
+      pool: docker-storage
+      type: disk
+- name: kubernetes
+  config: {}
+  description: ""
+  devices:
+    eth0:
+      nictype: bridged
+      name: eth0
+      parent: ovs0
+      type: nic
+    root:
+      path: /
+      pool: kubernetes-storage
       type: disk

@@ -33,9 +33,11 @@ profiles:
       type: disk
 - name: docker
   config:
+    # the security settings are needed for docker
     security.nesting: true 
     security.syscalls.intercept.mknod: true 
     security.syscalls.intercept.setxattr: true
+    # limit the memory and cpu resources
     limits.memory: 15GB # 4 machines per host with 15GB 
     limits.cpu: 2       # max 2 CPU cores.
   description: ""

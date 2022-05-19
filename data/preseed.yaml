@@ -47,7 +47,7 @@ profiles:
       type: nic
     root:
       path: /
-      pool: docker-storage
+      pool: docker
       type: disk
 - name: kubernetes
   config: {}
@@ -60,5 +60,5 @@ profiles:
       type: nic
     root:
       path: /
-      pool: kubernetes-storage
+      pool: kubernetes
       type: disk

@@ -32,13 +32,12 @@ profiles:
       pool: default
       type: disk
 - name: docker
-  config: 
-    security:
-      nesting: true 
-      syscalls:
-        intercept: 
-          mknod: true 
-          setxattr: true
+  config:
+    security.nesting: true 
+    security.syscalls.intercept.mknod: true 
+    security.syscalls.intercept.setxattr: true
+    limits.memory: 15GB # 4 machines per host with 15GB 
+    limits.cpu: 2       # max 2 CPU cores.
   description: ""
   devices:
     eth0:

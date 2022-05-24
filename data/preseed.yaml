@@ -38,7 +38,7 @@ profiles:
     security.syscalls.intercept.mknod: true 
     security.syscalls.intercept.setxattr: true
     security.privileged: true # maybe needed
-    linux.kernel_modules: ip_tables,ip6_tables,netlink_diag,nf_nat,overlay,br_netfilter
+    linux.kernel_modules: bridge,ip_tables,ip6_tables,netlink_diag,nf_nat,overlay,br_netfilter
     # limit the memory and cpu resources
     limits.memory: 15GB # 4 machines per host with 15GB 
     limits.memory.swap: false
@@ -62,7 +62,7 @@ profiles:
     security.syscalls.intercept.setxattr: true
     security.privileged: true # maybe needed
 
-    linux.kernel_modules: ip_tables,ip6_tables,netlink_diag,nf_nat,overlay,br_netfilter
+    linux.kernel_modules: bridge,ip_tables,ip6_tables,netlink_diag,nf_nat,overlay,br_netfilter
     # limit the memory and cpu resources
     limits.memory: 15GB # 4 machines per host with 15GB 
     limits.memory.swap: false

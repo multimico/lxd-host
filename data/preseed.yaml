@@ -37,9 +37,11 @@ profiles:
     security.nesting: true 
     security.syscalls.intercept.mknod: true 
     security.syscalls.intercept.setxattr: true
+    security.priviliged: true # maybe needed
     linux.kernel_modules: ip_tables,ip6_tables,netlink_diag,nf_nat,overlay,br_netfilter
     # limit the memory and cpu resources
     limits.memory: 15GB # 4 machines per host with 15GB 
+    limits.memory.swap: false
     limits.cpu: 2       # max 2 CPU cores.
   description: ""
   devices:
@@ -58,9 +60,12 @@ profiles:
     security.nesting: true 
     security.syscalls.intercept.mknod: true 
     security.syscalls.intercept.setxattr: true
+    security.priviliged: true # maybe needed
+
     linux.kernel_modules: ip_tables,ip6_tables,netlink_diag,nf_nat,overlay,br_netfilter
     # limit the memory and cpu resources
     limits.memory: 15GB # 4 machines per host with 15GB 
+    limits.memory.swap: false
     limits.cpu: 2       # max 2 CPU cores.
   description: ""
   devices:

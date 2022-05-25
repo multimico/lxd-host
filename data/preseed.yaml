@@ -43,7 +43,7 @@ profiles:
     limits.memory: 16GB 
     limits.memory.swap: false
     limits.cpu: 2 
-  description: ""
+  description: "Universal Docker Swarm Configuration"
   devices:
     eth0:
       nictype: bridged

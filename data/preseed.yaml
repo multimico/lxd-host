@@ -37,7 +37,7 @@ profiles:
     security.nesting: true 
     security.syscalls.intercept.mknod: true 
     security.syscalls.intercept.setxattr: true
-    security.privileged: true # maybe needed
+    # security.privileged: true # maybe needed
 
     raw.lxc: |
       lxc.apparmor.profile=unconfined

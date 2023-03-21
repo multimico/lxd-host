@@ -33,14 +33,24 @@ profiles:
       type: disk
 - name: docker
   config:
+    boot.autostart: "true"
+
     # the security settings are needed for docker
-    security.nesting: true 
-    security.syscalls.intercept.mknod: true 
-    security.syscalls.intercept.setxattr: true
+    security.nesting: "true" 
+    security.privileged: "true"
+    # security.syscalls.intercept.mknod: true 
+    # security.syscalls.intercept.setxattr: true
 
     # ALL these linux kernel modules are needed IN the LXD container that runs a docker swarm node. 
     linux.kernel_modules: ip_tables,ip6_tables,iptable_nat,iptable_mangle,bridge,nf_nat,br_netfilter,xfrm_user,xt_conntrack,xt_MASQUERADE,bonding,overlay,netlink_diag,ip_vs,ip_vs_dh,ip_vs_ftp,ip_vs_lblc,ip_vs_lblcr,ip_vs_lc,ip_vs_nq,ip_vs_rr,ip_vs_sed,ip_vs_sh,ip_vs_wlc,ip_vs_wrr
-    
+    # linux.kernel_modules: ip_vs,ip_vs_rr,ip_vs_wrr,ip_vs_sh,ip_tables,ip6_tables,netlink_diag,nf_nat,overlay,br_netfilter
+    raw.lxc: |
+      lxc.apparmor.profile=unconfined
+      lxc.apparmor.allow_nesting=1
+      lxc.mount.auto=proc:rw sys:rw cgroup:rw
+      lxc.cgroup.devices.allow=a
+      lxc.cap.drop=
+
     limits.memory.swap: false
     
     # limit the memory and cpu resources

@@ -50,6 +50,7 @@ profiles:
       lxc.mount.auto=proc:rw sys:rw cgroup:rw
       lxc.cgroup.devices.allow=a
       lxc.cap.drop=
+      lxc.mount.entry=/dev/kmsg dev/kmsg none defaults,bind,create=file
 
     limits.memory.swap: false
     

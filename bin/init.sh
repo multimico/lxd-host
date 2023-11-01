@@ -4,6 +4,12 @@ BINDIR=$( dirname "$(readlink -f "${BASH_SOURCE}")" )
 DATADIR="$( dirname ${BINDIR} )/data"
 MACADDRESS=$1
 
+if [ -z $MACADDRESS ]
+then
+    echo "no mac address provided"
+    exit 1
+fi
+
 PACKAGES=$(yq ".packages[]" ${DATADIR}/init.yaml)
 apt install -y $PACKAGES
 
@@ -36,6 +42,7 @@ netplan apply
 
 ### 
 # Init lxd
+mkdir -p /etc/lxd/
 cp ${DATADIR}/preseed.yaml /etc/lxd/preseed.yaml
 cat /etc/lxd/preseed.yaml | lxd init --preseed
 

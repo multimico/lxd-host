@@ -1,0 +1,16 @@
+description: "4 CPUs and 32GB RAM"
+limits.memory.swap: false
+
+# limit the memory and cpu resources
+limits.memory: 32GB 
+limits.cpu: 4 
+devices:
+  eth0:
+    name: eth0
+    nictype: bridged
+    parent: ovs0
+    type: nic
+  root:
+    path: /
+    pool: local
+    type: disk

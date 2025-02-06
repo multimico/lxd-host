@@ -1,0 +1,23 @@
+  description: "2 CPUs and 2GB RAM for Ceph"
+  limits.memory.swap: false
+
+  # limit the memory and cpu resources
+  limits.memory: 16GB 
+  limits.cpu: 2 
+  devices:
+    # External Network
+    eth0:
+      nictype: bridged
+      name: eth0
+      parent: ovs0
+      type: nic
+    # Internal Network
+    eth1:
+      nictype: bridged
+      name: eth1
+      parent: ovs1
+      type: nic
+    root:
+      path: /
+      pool: local
+      type: disk

@@ -21,3 +21,4 @@
       path: /
       pool: local
       type: disk
+      size: 200GiB

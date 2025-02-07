@@ -1,0 +1,22 @@
+description: "2 CPUs and 2GB RAM"
+limits.memory.swap: false
+
+# limit the memory and cpu resources
+limits.memory: 2GB 
+limits.cpu: 2 
+devices:
+  eth0:
+    name: eth0
+    nictype: macvlan
+    parent: ovs0
+    type: nic    
+    # Internal Network
+    eth1:
+      nictype: bridged
+      name: eth1
+      parent: ovs1
+  root:
+    path: /
+    pool: local
+    type: disk
+    size: 200GiB
